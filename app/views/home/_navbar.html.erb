@@ -1,0 +1,37 @@
+<header class="bg-gray-50 text-secondaryCharcoal text-sm">
+    <div class="px-4 py-2 flex justify-between items-center">
+      <nav>
+        <ul class="flex space-x-4 font-bold">
+          <li class="hover:underline hover:text-primarySunset"over:underline hover:text-primarySunset">
+            <%= link_to 'Tractors', root_path, class: 'hover:underline' %>
+          </li class="hover:underline hover:text-primarySunset"over:underline hover:text-primarySunset">
+
+          <li class="hover:underline hover:text-primarySunset">
+            <%= link_to 'Implements', '#', class: 'hover:underline' %>
+          </li class="hover:underline hover:text-primarySunset">
+
+          <li class="hover:underline hover:text-primarySunset">
+          <%= link_to 'Spare Parts', '#', class: 'hover:underline' %>
+          </li class="hover:underline hover:text-primarySunset">
+
+          <li class="hover:underline hover:text-primarySunset">
+          <%= link_to 'Operators & Technicians', '#', class: 'hover:underline' %>
+          </li class="hover:underline hover:text-primarySunset">
+        </ul>
+      </nav>
+      <%= link_to root_path, class: "flex items-center" do %>
+        <%= image_tag "logos/orange.png", class: "w-16" %>
+      <% end %>
+      <nav>
+        <ul class="flex space-x-4 font-bold">
+          <li class="hover:underline hover:text-primarySunset relative">
+            <input type="text" placeholder="Search" class="border border-gray-500 rounded px-2 py-1 bg-transparent text-sm">
+            <%= fa_icon "search", class: "text-gray-400 absolute right-4 top-4 transform -translate-y-1/2" %>
+          </li>
+          </li class="hover:underline hover:text-primarySunset">
+            <%= link_to 'Sign In', new_user_session_path, method: :get, class: 'bg-primarySunset text-white hover:text-primarySunset px-4 py-1 rounded hover:bg-transparent border border-primarySunset transition duration-300' %>
+          </li class="hover:underline hover:text-primarySunset">
+        </ul>
+      </nav>
+    </div>
+</header>

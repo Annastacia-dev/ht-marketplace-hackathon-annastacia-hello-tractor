@@ -17,10 +17,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
+
+    <%= favicon_link_tag 'logos/orange-icon.png' %>
+
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="bg-gray-100">
       <%= yield %>
     </main>
   </body>
