@@ -63,8 +63,8 @@ gem "paper_trail"
 gem "dotenv-rails"
 gem "rubocop"
 gem "hotwire-rails"
-gem "hotwire-livereload", group: [:development]
-gem "annotate", group: [:development]
-gem "byebug", group: [:development, :test]
-gem "bullet", group: [:development]
-gem "rspec-rails", group: [:development]
+gem "hotwire-livereload", group: [ :development ]
+gem "annotate", group: [ :development ]
+gem "byebug", group: [ :development, :test ]
+gem "bullet", group: [ :development ]
+gem "rspec-rails", group: [ :development ]
