@@ -36,8 +36,9 @@
 @layer components {
   html {
     scroll-behavior: smooth;
-    @apply font-manrope text-secondaryCharcoal dark:text-white text-base;
+    @apply font-manrope text-secondaryCharcoal dark:text-white md:text-base text-sm;
   }
+
   .btn-primary {
     @apply bg-primarySunset text-white hover:text-primarySunset px-4 py-2 rounded-full hover:bg-transparent border border-primarySunset transition duration-300 flex items-center ;
   }

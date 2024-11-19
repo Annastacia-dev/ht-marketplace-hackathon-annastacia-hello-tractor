@@ -1,4 +1,11 @@
-<div class="min-h-screen bg-gray-100  antialiased">
- <%= render 'navbar' %>
- <%= render 'hero' %>
-</div>
+<% if current_user %>
+  <% if current_user.admin? %>
+    <%= render 'dashboards/admin' %>
+  <% elsif current_user.seller? %>
+    <%= render 'dashboards/seller' %>
+  <% else %>
+    <%= render 'dashboards/buyer' %>
+  <% end %>
+<% else %>
+  <%= render 'landing_page' %>
+<% end %>

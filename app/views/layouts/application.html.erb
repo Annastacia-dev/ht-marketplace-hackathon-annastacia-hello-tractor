@@ -24,6 +24,12 @@
 
   <body>
     <main class="bg-gray-50">
+      <% unless flash.empty? %>
+        <div id="flash" data-main-target="flash">
+          <%= render 'layouts/flash' %>
+          <div id="progress-bar" data-main-target="progressBar" class="progress-bar"></div>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>

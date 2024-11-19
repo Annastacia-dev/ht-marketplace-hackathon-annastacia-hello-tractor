@@ -2,12 +2,12 @@
 
   <div class="lg:col-span-5 flex flex-col gap-7">
     <h1 class="text-4xl font-bold">Your Trusted Marketplace for Tractors and Implements.</h1>
-    <div class="flex gap-4">
-      <button class="btn-primary">
+    <div class="flex md:flex-row flex-col gap-4">
+      <button class="btn-primary w-fit">
         <%= link_to 'Browse Catalog', new_user_session_path, method: :get %>
        <i class="fa-solid fa-square-arrow-up-right ml-2"></i>
       </button>
-      <button class="btn-outline">
+      <button class="btn-outline w-fit">
         <%= link_to 'Sell Your Tractor', new_user_session_path, method: :get %>
       </button>
     </div>

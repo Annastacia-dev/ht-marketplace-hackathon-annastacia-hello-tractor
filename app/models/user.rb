@@ -27,4 +27,25 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_paper_trail
+
+  has_one_attached :avatar
+  has_one_attached :cover_photo
+
+  validates :name, presence: true
+  validates :phone, presence: true, format: { with: /\A\d{10}\z/, message: "must be a 10-digit number" }, uniqueness: true
+  validates :location, presence: true
+
+  enum user_type: {
+    buyer: 0,
+    seller: 1,
+    admin: 2
+  }
+
+  enum dealer_type: {
+    tractors: 0,
+    spare_parts: 1,
+    operators: 2,
+  }
 end

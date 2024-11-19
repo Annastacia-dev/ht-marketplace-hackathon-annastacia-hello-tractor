@@ -1,0 +1,136 @@
+<div class="relative min-h-screen flex items-center justify-center p-4">
+  <div class="fixed inset-0 bg-[url('tractor-one')] bg-cover bg-center blur-sm"></div>
+  <div class="fixed inset-0 bg-black/50"></div>
+  
+  <div class="relative z-10 w-full max-w-4xl">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden lg:grid lg:grid-cols-3">
+      <!-- Image Side (hidden on mobile, shown on lg screens) -->
+      <div class="hidden lg:block relative col-span-1">
+        <div class="absolute inset-0 bg-[url('tractor-one')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+      </div>
+      
+      <!-- Form Side -->
+      <div class="p-8 lg:p-12 bg-white space-y-4 col-span-2">
+        <div class="flex items-center justify-center">
+          <%= image_tag "logos/orange-icon.png", class: "w-12" %>
+          <h2 class="text-2xl font-bold text-gray-800">Sign up to <b class="text-primarySunset">Hello Tractor</b></h2>
+        </div>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "flex flex-col gap-4") do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="grid md:grid-cols-2 gap-4">
+
+            <div class="flex flex-col gap-1">
+              <%= f.label :name, class: "block text-gray-700" %>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name",
+                  class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-none", required: true %>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <%= f.label :email, class: "block text-gray-700" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                  class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-none", required: true %>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <%= f.label :phone, class: "block text-gray-700" %>
+              <%= f.text_field :phone, autofocus: true, autocomplete: "phone",
+                  class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-none", required: true %>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <%= f.label :location, class: "block text-gray-700" %>
+              <%= f.text_field :location, autofocus: true, autocomplete: "location",
+                  class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-none", required: true %>
+            </div>
+
+            <div class="flex flex-col gap-4 col-span-2">
+              <label class="block text-gray-700">I'm looking to</label>
+              <div class="flex flex-col gap-6 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <%= f.radio_button :user_type, 'buyer', class: "w-4 h-4 text-blue-500 focus:ring-blue-500" %>
+                  <%= f.label :user_type_buyer, 'Buy a tractor', class: "text-gray-700" %>
+                </div>
+                <div class="flex items-center gap-2">
+                  <%= f.radio_button :user_type, 'seller', class: "w-4 h-4 text-blue-500 focus:ring-blue-500" %>
+                  <%= f.label :user_type_seller, 'Sell a tractor', class: "text-gray-700" %>
+                </div>
+              </div>
+          </div>
+
+            <div class="flex flex-col gap-1">
+             <div class="flex">
+              <%= f.label :password, class: "block text-gray-700" %>
+              <% if @minimum_password_length %>
+                <em class="text-sm text-gray-500">(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              </div>
+              <div class="relative">
+                <%= f.password_field :password, autocomplete: "new-password",
+                    class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-none", id: "password" %>
+                <i class="fa-solid fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" id="show-password"></i>
+                <i class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" id="hide-password" style="display: none"></i>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <%= f.label :password_confirmation, class: "block text-gray-700" %>
+              <div class="relative">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password",
+                    class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-none", id: "password-confirmation" %>
+                <i class="fa-solid fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" id="show-password-confirmation"></i>
+                <i class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" id="hide-password-confirmation" style="display: none"></i>
+              </div>
+            </div>
+          </div>
+
+            <div class="actions mt-4">
+              <%= f.submit "Sign up", class: "w-full bg-primarySunset text-white px-4 py-2 rounded-md hover:bg-primarySunset transition duration-200 cursor-pointer" %>
+            </div>
+          <% end %>
+
+          <div class="mt-6 text-center text-gray-600">
+            <%= render "devise/shared/links" %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+ document.addEventListener("turbo:load", () => {
+    const passwordField = document.getElementById("password");
+    const showPassword = document.getElementById("show-password");
+    const hidePassword = document.getElementById("hide-password");
+    const passwordConfirmationField = document.getElementById("password-confirmation");
+    const showPasswordConfirmation = document.getElementById("show-password-confirmation");
+    const hidePasswordConfirmation = document.getElementById("hide-password-confirmation");
+
+    showPassword.addEventListener("click", () => {
+      passwordField.type = "text";
+      showPassword.style.display = "none";
+      hidePassword.style.display = "block";
+    });
+
+    hidePassword.addEventListener("click", () => {
+      passwordField.type = "password";
+      showPassword.style.display = "block";
+      hidePassword.style.display = "none";
+    });
+
+    showPasswordConfirmation.addEventListener("click", () => {
+      passwordConfirmationField.type = "text";
+      showPasswordConfirmation.style.display = "none";
+      hidePasswordConfirmation.style.display = "block";
+    });
+
+    hidePasswordConfirmation.addEventListener("click", () => {
+      passwordConfirmationField.type = "password";
+      showPasswordConfirmation.style.display = "block";
+      hidePasswordConfirmation.style.display = "none";
+    });
+
+  })
+</script>
