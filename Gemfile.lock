@@ -127,8 +127,8 @@ GEM
     ffi (1.17.0-x86-linux-gnu)
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
-    font-awesome-rails (4.7.0.9)
-      railties (>= 3.2, < 9.0)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     globalid (1.2.1)
@@ -313,6 +313,8 @@ GEM
       rubocop-rails
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     securerandom (0.3.2)
     selenium-webdriver (4.26.0)
       base64 (~> 0.2)
@@ -382,7 +384,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
-  font-awesome-rails (~> 4.7, >= 4.7.0.9)
+  font-awesome-sass (~> 6.5, >= 6.5.2)
   friendly_id
   hotwire-livereload
   hotwire-rails

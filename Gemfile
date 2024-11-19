@@ -68,4 +68,4 @@ gem "annotate", group: [ :development ]
 gem "byebug", group: [ :development, :test ]
 gem "bullet", group: [ :development ]
 gem "rspec-rails", group: [ :development ]
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.9'
+gem 'font-awesome-sass', '~> 6.5', '>= 6.5.2'

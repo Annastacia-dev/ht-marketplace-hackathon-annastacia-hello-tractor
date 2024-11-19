@@ -1,38 +1,4 @@
 <div class="min-h-screen bg-gray-100  antialiased">
  <%= render 'navbar' %>
-  <main class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8">Welcome to Hello Tractor</h1>
-    
-    <div class="bg-white p-4 rounded-lg shadow-md mb-8">
-      <h3 class="text-lg font-semibold mb-4">Search and Filters</h3>
-      <%= form_with url: root_path, method: :get, class: 'grid grid-cols-1 md:grid-cols-4 gap-4', local: true do |f| %>
-        <%= f.text_field :search, placeholder: 'Search tractors...', class: 'w-full px-3 py-2 border border-gray-300 rounded-md' %>
-        <%= f.select :brand, options_for_select([['Brand', ''], 'John Deere', 'Massey Ferguson', 'New Holland']), {}, { class: 'w-full px-3 py-2 border border-gray-300 rounded-md' } %>
-        <%= f.select :price_range, options_for_select([['Price Range', ''], '$0 - $10,000', '$10,000 - $25,000', '$25,000 - $50,000', '$50,000+']), {}, { class: 'w-full px-3 py-2 border border-gray-300 rounded-md' } %>
-        <%= f.submit 'Search', class: 'w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300' %>
-      <% end %>
-    </div>
-
-    <h2 class="text-2xl font-semibold mt-8 mb-4">Featured Listings</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <% featured_listings = [
-        { id: 1, title: 'John Deere 5075E', price: 35000, location: 'Nairobi, Kenya' },
-        { id: 2, title: 'Massey Ferguson 240', price: 28000, location: 'Accra, Ghana' },
-        { id: 3, title: 'New Holland T6050', price: 42000, location: 'Lagos, Nigeria' }
-      ] %>
-
-      <% featured_listings.each do |listing| %>
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2"><%= listing[:title] %></h3>
-            <p class="text-2xl font-bold mb-2">$<%= number_with_delimiter(listing[:price]) %></p>
-            <p class="text-gray-600"><%= listing[:location] %></p>
-          </div>
-          <div class="px-4 py-3 bg-gray-50">
-            <%= link_to 'View Details', '#', class: 'block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300' %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </main>
+ <%= render 'hero' %>
 </div>

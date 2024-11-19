@@ -1,5 +1,5 @@
-<header class="bg-gray-50 text-secondaryCharcoal text-sm">
-    <div class="px-4 py-2 flex justify-between items-center">
+<header class="bg-gray-100 shadow text-secondaryCharcoal text-sm">
+    <div class="px-4 py-3 flex justify-between items-center">
       <nav>
         <ul class="flex space-x-4 font-bold">
           <li class="hover:underline hover:text-primarySunset"over:underline hover:text-primarySunset">
@@ -24,11 +24,11 @@
       <% end %>
       <nav>
         <ul class="flex space-x-4 font-bold">
-          <li class="hover:underline hover:text-primarySunset relative">
+          <li class="relative">
             <input type="text" placeholder="Search" class="border border-gray-500 rounded px-2 py-1 bg-transparent text-sm">
-            <%= fa_icon "search", class: "text-gray-400 absolute right-4 top-4 transform -translate-y-1/2" %>
+            <i class="fa-solid fa-magnifying-glass text-gray-400 absolute right-4 top-4 transform -translate-y-1/2"></i>
           </li>
-          </li class="hover:underline hover:text-primarySunset">
+          </li class="">
             <%= link_to 'Sign In', new_user_session_path, method: :get, class: 'bg-primarySunset text-white hover:text-primarySunset px-4 py-1 rounded hover:bg-transparent border border-primarySunset transition duration-300' %>
           </li class="hover:underline hover:text-primarySunset">
         </ul>
