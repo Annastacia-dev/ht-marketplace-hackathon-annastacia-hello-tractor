@@ -17,3 +17,6 @@ pin "url" # @2.1.0
 pin "chartkick" # @5.0.1
 pin "dropzone" # @6.0.0
 pin "just-extend" # @5.1.1
+pin "activestorage" # @5.2.8
+pin "@rails/activestorage", to: "@rails--activestorage.js" # @8.0.0
+pin "Chart.bundle", to: "Chart.bundle.js"

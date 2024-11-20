@@ -11,8 +11,8 @@ class CreateTractors < ActiveRecord::Migration[7.2]
       t.string :location
       t.string :stock_quantity
       t.string :price
-      t.integer :publishing_status
-      t.integer :selling_status
+      t.integer :publishing_status, default: 0
+      t.integer :selling_status, default: 0
 
       t.timestamps
     end

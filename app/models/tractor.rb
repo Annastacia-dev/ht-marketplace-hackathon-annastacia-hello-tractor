@@ -10,8 +10,8 @@
 #  location            :string
 #  model               :string           not null
 #  price               :string
-#  publishing_status   :integer
-#  selling_status      :integer
+#  publishing_status   :integer          default("draft")
+#  selling_status      :integer          default("for_sale")
 #  stock_quantity      :string
 #  year_of_manufacture :string           not null
 #  created_at          :datetime         not null
@@ -39,21 +39,24 @@ class Tractor < ApplicationRecord
   validates :year_of_manufacture, presence: true
 
   enum condition: {
-    new_machine: 0,
-    used: 1,
-    refurbished: 2,
-    damaged: 3,
-    other: 4
+    fairly_used: 0,
+    refurbished: 1,
+    damaged: 2,
+    other: 3
   }
 
   enum publishing_status: {
-    draft: 0,
-    published: 1,
-    archived: 2
+    publish: 0,
+    draft: 1,
+    archive: 2
   }
 
   enum selling_status: {
     for_sale: 0,
     sold: 1
   }
+
+  def name
+    "#{brand} #{model}"
+  end
 end

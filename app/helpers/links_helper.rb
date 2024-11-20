@@ -33,4 +33,24 @@ module LinksHelper
       menu_text: 'Tractor Listings',
     )
   end
+
+  def bottom_nav_links
+    items  =  [
+      {
+        menu_text: 'Dashboard',
+        icon_class: 'fa-solid fa-house',
+        path: root_path
+      }
+    ]
+
+    if current_user.seller?
+      items.push(
+        path: tractor_listing_path(current_user.tractor_listing),
+        icon_class: 'fa-solid fa-tractor',
+        menu_text: 'Tractor Listings',
+      )
+    end
+
+    items
+  end
 end

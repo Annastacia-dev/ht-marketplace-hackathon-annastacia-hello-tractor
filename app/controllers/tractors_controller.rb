@@ -7,11 +7,15 @@ class TractorsController < ApplicationController
   end
 
   def create
-    @tractor = @tractor_listing.tractors.build(tractor_params)
-    if @tractor.save
-      redirect_to tractor_listing_path(@tractor_listing), notice: 'Tractor was successfully created.'
-    else
-      render :new
+
+    @tractor = @tractor_listing.tractors.create(tractor_params)
+
+    respond_to do |format|
+      if @tractor.save
+          format.html { redirect_to tractor_listing_path(@tractor_listing), notice: "Tractor was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -31,5 +35,9 @@ class TractorsController < ApplicationController
 
   def set_tractor_listing
     @tractor_listing = TractorListing.find(params[:tractor_listing_id])
+  end
+
+  def tractor_params
+    params.require(:tractor).permit([:brand, :model, :description, :condition, :year_of_manufacture, :hours_used, :location, :price, :publishing_status, :selling_status, :images])
   end
 end

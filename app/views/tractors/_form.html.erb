@@ -1,0 +1,52 @@
+
+<%= form_with model: [@tractor_listing, tractor], class: 'flex flex-col gap-2 lg:w-3/4' do |f| %>
+
+    <%= render 'shared/errors', object: tractor %>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="flex flex-col gap-2">
+        <%= f.label :brand %>
+        <%= f.text_field :brand, class: 'form-input' %>
+      </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :model %>
+        <%= f.text_field :model, class: 'form-input' %>
+      </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :year_of_manufacture %>
+        <%= f.select :year_of_manufacture, (1900..Date.today.year).to_a.reverse, {}, class: 'form-input' %>
+      </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :hours_used %>
+        <%= f.number_field :hours_used, class: 'form-input' %>
+      </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :condition %>
+        <%= f.select :condition, tractor.class.conditions.keys.map { |condition| [condition.titleize, condition] }, {}, class: 'form-input' %>
+      </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :price %>
+        <%= f.number_field :price, class: 'form-input' %>
+      </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :publishing_status %>
+        <%= f.select :publishing_status, tractor.class.publishing_statuses.keys.map { |status| [status.titleize, status] }, {}, class: 'form-input' %>
+      </div>
+
+      <% if action_name == 'edit' %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :selling_status %>
+          <%= f.select :selling_status, tractor.class.selling_statuses.keys.map { |status| [status.titleize, status] }, {}, class: 'form-input' %>
+        </div>
+      <% end %>
+
+      <div class="flex flex-col gap-2 col-span-full">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-input', rows: 5 %>
+      </div>
+    </div>
+
+    <%= render 'images_dropzone', f: f  %>
+
+    <%= f.submit 'Add Tractor', class: 'w-fit btn-primary mt-4' %>
+<% end %>

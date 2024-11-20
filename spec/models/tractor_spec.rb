@@ -10,8 +10,8 @@
 #  location            :string
 #  model               :string           not null
 #  price               :string
-#  publishing_status   :integer
-#  selling_status      :integer
+#  publishing_status   :integer          default("draft")
+#  selling_status      :integer          default("for_sale")
 #  stock_quantity      :string
 #  year_of_manufacture :string           not null
 #  created_at          :datetime         not null

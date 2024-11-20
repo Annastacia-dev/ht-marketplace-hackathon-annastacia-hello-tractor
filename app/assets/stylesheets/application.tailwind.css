@@ -50,4 +50,20 @@
   .btn-outline {
     @apply border border-secondaryCharcoal text-secondaryCharcoal hover:bg-secondaryCharcoal hover:text-white px-4 py-2 rounded-full transition duration-300 flex items-center;
   }
+
+  .form-input {
+    @apply border border-secondaryCharcoal px-4 py-2 rounded-md bg-transparent;
+  }
+
+  .dropzone {
+    @appl flex flex-wrap gap-5;
+  }
+
+  .dropzone-msg-title {
+    @apply flex gap-5 py-3 lg:w-[62vw];
+  }
+
+  .dropzone-msg{
+    @apply rounded-md border border-secondaryCharcoal border-dashed lg:w-[62vw];
+  }
 }
