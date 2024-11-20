@@ -1,0 +1,40 @@
+<div class="flex flex-col">
+  <%= render 'components/breadcrumb', breadcrumbs: [
+    {text: 'Home', path: root_path},
+    {text: 'Tractor Listings', path: tractor_listings_path }
+  ] %>
+
+  <h1 class="text-2xl font-bold text-gray-800 capitalize">Tractors (<%= @tractor_listing.tractors.size %>)</h1>
+
+  <% unless @tractor_listing.tractors.empty? %>
+  <div class="overflow-x-auto mt-4 bg-white rounded-md shadow-sm p-1 border border-gray-200">
+    <table class="w-full">
+      <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2 uppercase text-xs">Tractor</th>
+        <th class="p-2 uppercase text-xs">Price</th>
+        <th class="p-2 uppercase text-xs">Status</th>
+        <th class="p-2 uppercase text-xs">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+       <% @tractor_listing.tractors.each do |index, tractor| %>
+        <tr>
+          <td class="p-2"><%= tractor.name %></td>
+          <td class="p-2"><%= tractor.price %></td>
+          <td class="p-2"><%= tractor.status %></td>
+          <td class="p-2"><%= tractor.actions %></td>
+        </tr>
+       <% end %>
+    </tbody>
+    </table>
+    </div>
+  <% else %>
+    <div class="bg-white rounded-md shadow-sm p-4 border border-gray-200 min-h-[200px] flex flex-col justify-center items-center mt-4 gap-4">
+      <p class="text-gray-500">
+       You have no tractors in your listing.
+      </p>
+      <%= link_to 'Add Tractor', new_tractor_listing_tractor_path(@tractor_listing), class: 'btn btn-primary w-fit' %>
+    </div>
+  <% end %>
+</div>

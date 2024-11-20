@@ -69,3 +69,5 @@ gem "byebug", group: [ :development, :test ]
 gem "bullet", group: [ :development ]
 gem "rspec-rails", group: [ :development ]
 gem 'font-awesome-sass', '~> 6.5', '>= 6.5.2'
+gem 'chartkick', '~> 5.0', '>= 5.0.7'
+gem 'web-push', '~> 3.0', '>= 3.0.1'

@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                     :uuid             not null, primary key
-#  dealer_type            :integer          default(0), not null
+#  dealer_type            :integer          default("tractors"), not null
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  location               :string           not null
@@ -12,7 +12,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  user_type              :integer          default(0), not null
+#  user_type              :integer          default("buyer"), not null
 #  verified_at            :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -33,6 +33,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :cover_photo
 
+  has_one :tractor_listing, dependent: :destroy
+
   validates :name, presence: true
   validates :phone, presence: true, format: { with: /\A\d{10}\z/, message: "must be a 10-digit number" }, uniqueness: true
   validates :location, presence: true
@@ -48,4 +50,18 @@ class User < ApplicationRecord
     spare_parts: 1,
     operators: 2,
   }
+
+  after_create :create_tractor_listing
+
+  def create_tractor_listing
+    if self.user_type == 'seller'
+      self.create_tractor_listing
+    end
+  end
+
+  private
+
+  def create_tractor_listing
+    self.tractor_listing = TractorListing.create(user: self)
+  end
 end

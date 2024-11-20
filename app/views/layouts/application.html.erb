@@ -4,6 +4,8 @@
     <title><%= content_for(:title) || "Hello Tractor" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="vapid-public-key" content="<%= ENV.fetch('VAPID_PUBLIC_KEY') %>">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -22,8 +24,11 @@
 
   </head>
 
-  <body>
-    <main class="bg-gray-50">
+  <body class="bg-gray-50">
+    <% if current_user %>
+      <%= render 'layouts/sidebar', items: sidebar_items %>
+    <% end %>
+    <main class="<%= current_user ? 'lg:ml-48 py-8 px-4' : '' %>">
       <% unless flash.empty? %>
         <div id="flash" data-main-target="flash">
           <%= render 'layouts/flash' %>

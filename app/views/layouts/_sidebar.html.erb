@@ -1,0 +1,124 @@
+<ul class="flex-col flex fixed w-fit dark:bg-black bg-gray-50 px-2 py-8 gap-6  font-normal text-sm z-50 font-courier h-screen shadow" id="sidebar">
+
+  <%= link_to root_path, class: "flex items-center" do %>
+    <%= image_tag 'logos/orange-icon.png', class: "w-10" %>
+    <p class="text-primarySunset font-semibold"> Hello Tractor </p>
+  <% end %>
+
+  <!-- Install Prompt
+    <div data-controller="install-prompt">
+      <button
+        data-action="install-prompt#install"
+        data-install-prompt-target="button"
+        style="display: none;"
+        class="px-4 py-4"
+        >
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          Install App
+      </button>
+      <hr class="border-1" data-install-prompt-target="divider" />
+    </div>
+  -->
+
+  <!-- Enable Notifications
+    <div data-controller="allow-notifications">
+      <button data-allow-notifications-target="button" data-action="click->allow-notifications#requestPermission"
+      style="display: none;"
+      class="px-4 py-4"
+      >
+        <i class="fa-solid fa-bell"></i>
+        Enable Notifications
+      </button>
+      <hr class="border-1" data-allow-notifications-target="divider" />
+    </div>
+  -->
+
+  <% items.each_with_index do |item, index| %>
+    <% if item[:children] %>
+      <li class="px-4 flex flex-col gap-2 cursor-pointer" onclick="toggleDropdown('<%= item[:menu_text] %>', '<%= item[:menu_text] %>')">
+          <div class="flex items-center gap-5">
+            <div class="flex items-center gap-4">
+              <i class="<%= item[:icon_class] %>"></i>
+              <%= item[:menu_text] %>
+            </div>
+            <svg id="<%= item[:menu_text] %>_icon" class="h-4 w-4 ml-2 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+            </svg>
+          </div>
+
+          <div id="<%= item[:menu_text] %>_dropdown" class="hidden mt-2 flex flex-col gap-3">
+            <% item[:children].each_with_index do |child, child_index| %>
+
+              <% if child_index == 0 %>
+                <hr class="border-1" />
+              <% end %>
+
+              <% if child[:type] == 'button' %>
+                <%= button_to child[:path], method: child[:method], class: "px-1 py-2 flex items-center gap-4 #{child[:class]}  #{child[:method] == :delete ? 'text-red-500' : ''}", data: (child[:method] == :delete ? { confirm: "Are you sure?", turbo_confirm: "Are you sure?" } : {}) do %>
+                  <i class="<%= child[:icon_class] %>"></i>
+                  <span class="hover:underline"><%= child[:menu_text] %></span>
+                <% end %>
+              <% else %>
+                <%= link_to child[:path], class: "block px-1 py-2" do %>
+                  <div class="flex gap-4 items-center">
+                    <i class="<%= child[:icon_class] %>"></i>
+                    <span class="hover:underline"><%= child[:menu_text] %> </span>
+                  </div>
+                <% end %>
+              <% end %>
+
+              <% if child_index != (item[:children].length - 1) %>
+                <hr class="border-1" />
+              <% end %>
+
+            <% end %>
+          </div>
+      </li>
+    <% else %>
+      <li class="text-sm">
+        <% if item[:type] == 'button' %>
+          <%= button_to item[:path], method: item[:method], class: "px-4 flex items-center gap-4 #{item[:method] == :delete ? 'text-red-500' : ''}", data: (item[:method] == :delete ? { confirm: "Are you sure?", turbo_confirm: "Are you sure?" } : {}) do %>
+            <i class="<%= item[:icon_class] %>"></i>
+            <span class="hover:underline"><%= item[:menu_text] %></span>
+          <% end %>
+        <% else %>
+          <%= link_to item[:path], class: "px-4 flex items-center gap-4 relative" do %>
+            <i class="<%= item[:icon_class] %>"></i>
+            <span class="hover:underline"><%= item[:menu_text] %></span>
+            <% if item[:data] && !item[:data].to_i.zero? %>
+              <div class='absolute text-[10px] font-semibold border-2 border-gray-50 dark:border-black bg-black dark:bg-white h-5 w-5 rounded-full text-white dark:text-black flex items-center justify-center -top-2 left-2'>
+                <%= item[:data] %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if index != (items.length - 1) %>
+      <hr class="border-1" />
+    <% end %>
+  <% end %>
+</ul>
+
+<script>
+  function toggleDropdown(menuId, iconId) {
+    var dropdown = document.getElementById(menuId + '_dropdown');
+    var icon = document.getElementById(iconId + '_icon');
+
+    if (dropdown.classList.contains('hidden')) {
+      document.querySelectorAll('[id$="_dropdown"]').forEach(function(dd) {
+        dd.classList.add('hidden');
+      });
+      document.querySelectorAll('[id$="_icon"]').forEach(function(ic) {
+        ic.classList.add('rotate-180');
+      });
+
+      dropdown.classList.remove('hidden');
+      icon.classList.remove('rotate-180');
+    } else {
+      dropdown.classList.add('hidden');
+      icon.classList.add('rotate-180');
+    }
+  }
+</script>
