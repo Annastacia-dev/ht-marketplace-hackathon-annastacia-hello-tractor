@@ -20,7 +20,7 @@
         <tbody>
           <% @tractor_listing.tractors.each_with_index do |tractor, index| %>
             <tr class="<%= index.even? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100 transition-colors">
-              <td class="p-3 border-b border-gray-200 flex items-center gap-3">
+              <td class="p-3 border-b border-gray-200 flex lg:flex-row flex-col items-center gap-3">
                 <% if tractor.images.attached? %>
                   <%= image_tag(tractor.images[0], class: "w-16 h-16 object-cover rounded-md", alt: "Tractor Image") %>
                 <% end %>
