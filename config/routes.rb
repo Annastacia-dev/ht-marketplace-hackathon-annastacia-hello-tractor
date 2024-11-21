@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :tractor_listings do
     resources :tractors
   end
+
+  resources :sellers
 end

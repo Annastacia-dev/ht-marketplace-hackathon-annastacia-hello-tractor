@@ -12,6 +12,10 @@ module LinksHelper
       seller_sidebar_links(items)
     end
 
+    if current_user.admin?
+      admin_sidebar_links(items)
+    end
+
     items.push(
       path: '',
       icon_class: 'fa-solid fa-user',
@@ -31,6 +35,14 @@ module LinksHelper
       path: tractor_listing_path(current_user.tractor_listing),
       icon_class: 'fa-solid fa-tractor',
       menu_text: 'Tractor Listings',
+    )
+  end
+
+  def admin_sidebar_links(items)
+    items.push(
+      path: sellers_path,
+      icon_class: 'fa-solid fa-shop',
+      menu_text: 'Sellers',
     )
   end
 

@@ -37,6 +37,8 @@
       <% end %>
       <%= yield %>
     </main>
-    <%= render 'layouts/bottom_nav' %>
+    <% if current_user %>
+      <%= render 'layouts/bottom_nav' %>
+    <% end %>
   </body>
 </html>
