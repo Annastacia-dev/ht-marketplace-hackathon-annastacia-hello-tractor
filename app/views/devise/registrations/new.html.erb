@@ -48,14 +48,14 @@
 
             <div class="flex flex-col gap-4 col-span-2">
               <label class="block text-gray-700">I'm looking to</label>
-              <div class="flex flex-col gap-6 rounded-lg">
+              <div class="flex lg:flex-row flex-col gap-6 rounded-lg">
                 <div class="flex items-center gap-2">
-                  <%= f.radio_button :user_type, 'buyer', class: "w-4 h-4 text-blue-500 focus:ring-blue-500" %>
-                  <%= f.label :user_type_buyer, 'Buy a tractor', class: "text-gray-700" %>
+                  <%= f.radio_button :role, 'buyer', class: "w-4 h-4 text-blue-500 focus:ring-blue-500" %>
+                  <%= f.label :role_buyer, 'Buy a tractor', class: "text-gray-700" %>
                 </div>
                 <div class="flex items-center gap-2">
-                  <%= f.radio_button :user_type, 'seller', class: "w-4 h-4 text-blue-500 focus:ring-blue-500" %>
-                  <%= f.label :user_type_seller, 'Sell a tractor', class: "text-gray-700" %>
+                  <%= f.radio_button :role, 'seller', class: "w-4 h-4 text-blue-500 focus:ring-blue-500" %>
+                  <%= f.label :role_seller, 'Sell a tractor', class: "text-gray-700" %>
                 </div>
               </div>
           </div>

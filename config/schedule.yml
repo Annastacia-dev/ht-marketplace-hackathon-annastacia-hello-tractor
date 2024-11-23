@@ -1,0 +1,4 @@
+job_name:
+  cron: "*/30 * * * *"
+  class: "JobWorker"
+  description: "Job Description"

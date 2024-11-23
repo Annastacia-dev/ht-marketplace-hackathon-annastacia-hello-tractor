@@ -2,20 +2,23 @@
 #
 # Table name: users
 #
-#  id                     :uuid             not null, primary key
-#  dealer_type            :integer          default("tractors"), not null
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  location               :string           not null
-#  name                   :string           not null
-#  phone                  :string           not null
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
-#  user_type              :integer          default("buyer"), not null
-#  verified_at            :datetime
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  id                                 :uuid             not null, primary key
+#  dealer_type                        :integer          default("tractors"), not null
+#  email                              :string           default(""), not null
+#  encrypted_password                 :string           default(""), not null
+#  location                           :string           not null
+#  name                               :string           not null
+#  phone                              :string           not null
+#  phone_verification_code            :string
+#  phone_verification_code_expires_at :datetime
+#  phone_verified_at                  :datetime
+#  remember_created_at                :datetime
+#  reset_password_sent_at             :datetime
+#  reset_password_token               :string
+#  role                               :integer          default("buyer"), not null
+#  seller_verified_at                 :datetime
+#  created_at                         :datetime         not null
+#  updated_at                         :datetime         not null
 #
 # Indexes
 #

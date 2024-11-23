@@ -25,10 +25,10 @@
   </head>
 
   <body class="bg-gray-50">
-    <% if current_user %>
+    <% if current_user && current_user.is_phone_verified? %>
       <%= render 'layouts/sidebar', items: sidebar_items %>
     <% end %>
-    <main class="<%= current_user ? 'lg:ml-48 py-8 px-4' : '' %>">
+    <main class="<%= current_user && current_user.is_phone_verified? ? 'lg:ml-48 py-8 px-4' : '' %>">
       <% unless flash.empty? %>
         <div id="flash" data-main-target="flash">
           <%= render 'layouts/flash' %>
@@ -37,7 +37,7 @@
       <% end %>
       <%= yield %>
     </main>
-    <% if current_user %>
+    <% if current_user && current_user.is_phone_verified? %>
       <%= render 'layouts/bottom_nav' %>
     <% end %>
   </body>

@@ -1,0 +1,50 @@
+<div class="flex flex-col">
+  <%= render 'components/breadcrumb', breadcrumbs: [
+    {text: 'Home', path: root_path},
+    {text: 'Sellers', path: sellers_path }
+  ] %>
+
+  <h1 class="text-2xl font-bold text-gray-800 capitalize mt-4">Sellers (<%= @sellers.size %>)</h1>
+
+  <% unless @sellers.empty? %>
+    <div class="overflow-x-auto mt-4 bg-white rounded-md shadow-sm border border-gray-200">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-100 text-gray-600">
+          <tr>
+            <th class="p-3 border-b border-gray-200 uppercase">Name</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Location</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Active Listings</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @sellers.each_with_index do |seller, index| %>
+            <tr class="<%= index.even? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100 transition-colors">
+              <td class="p-3 border-b border-gray-200 flex lg:flex-row flex-col items-center gap-3">
+                <% if seller.avatar.attached? %>
+                  <%= image_tag(seller.avatar, class: "w-16 h-16 object-cover rounded-md", alt: "{seller.ame}") %>
+                <% end %>
+                <%= seller.name %>
+                <% if seller.is_seller_verified? %>
+                  <i class="fa-solid fa-circle-check text-green-500"></i>
+                <% end %>
+              </td>
+              <td class="p-3 border-b border-gray-200"><%= seller.location %></td>
+              <td class="p-3 border-b border-gray-200"><%= seller.tractor_listing.tractors.where(selling_status: :for_sale).size %></td>
+              <td class="p-3 border-b border-gray-200 text-blue-500">
+                <!-- Actions (e.g., Edit/Delete) -->
+                <%= link_to 'Inactivate','', class: 'hover:underline' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="bg-white rounded-md shadow-sm p-6 border border-gray-200 min-h-[200px] flex flex-col justify-center items-center mt-4 gap-4">
+      <p class="text-gray-500 text-center">
+        There are no tractor sellers yet.
+      </p>
+    </div>
+  <% end %>
+</div>

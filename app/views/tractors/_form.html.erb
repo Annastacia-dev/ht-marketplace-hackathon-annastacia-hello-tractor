@@ -28,10 +28,13 @@
         <%= f.label :price %>
         <%= f.number_field :price, class: 'form-input' %>
       </div>
-      <div class="flex flex-col gap-2">
-        <%= f.label :publishing_status %>
-        <%= f.select :publishing_status, tractor.class.publishing_statuses.keys.map { |status| [status.titleize, status] }, {}, class: 'form-input' %>
-      </div>
+
+      <% if current_user.admin? %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :publishing_status %>
+          <%= f.select :publishing_status, tractor.class.publishing_statuses.keys.map { |status| [status.titleize, status] }, {}, class: 'form-input' %>
+        </div>
+      <% end %>
 
       <% if action_name == 'edit' %>
         <div class="flex flex-col gap-2">

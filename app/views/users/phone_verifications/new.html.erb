@@ -1,0 +1,82 @@
+<div class="relative min-h-screen flex items-center justify-center p-4">
+  <div class="fixed inset-0 bg-[url('tractor-one')] bg-cover bg-center blur-sm"></div>
+  <div class="fixed inset-0 bg-black/50"></div>
+
+  <div class="relative z-10 w-full max-w-4xl">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden lg:grid lg:grid-cols-2">
+      <!-- Image Side (hidden on mobile, shown on lg screens) -->
+      <div class="hidden lg:block relative">
+        <div class="absolute inset-0 bg-[url('tractor-one')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+      </div>
+
+      <!-- Form Side -->
+      <div class="p-8 lg:p-12 bg-white space-y-4">
+        <div class="flex items-center justify-center">
+          <%= image_tag "logos/orange-icon.png", class: "w-12" %>
+          <h2 class="text-lg font-bold text-gray-800 capitalize">Verify <b class="text-primarySunset">phone number</b> to continue</h2>
+        </div>
+
+        <%= form_with url: verify_phone_path, method: :post, local: true do |f| %>
+          <div class="space-y-5">
+            <div class="flex flex-col gap-1">
+              <%= f.label :code, 'Enter verification Code', class: "text-gray-700 text-sm" %>
+              <%= f.text_field :phone_verification_code, autofocus: true, autocomplete: "email", 
+                  class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primarySunset" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Verify", class: "w-full bg-primarySunset text-white px-4 py-2 rounded-md hover:bg-primarySunset/80 transition duration-200 cursor-pointer" %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="mt-6 text-center text-gray-600 flex flex-row justify-between items-center gap-3 text-sm">
+          <%= button_to 'Home', destroy_user_session_path, method: :delete, class: 'underline' %>
+
+          <% if current_user.phone_verification_code_expires_at && current_user.phone_verification_code_expires_at > Time.now %>
+            <div>
+              <span>Time remaining: </span>
+              <span id="time-left" class="<%= 'text-red-500' if Time.now > current_user.phone_verification_code_expires_at %>"></span>
+            </div>
+          <% else %>
+            <%= link_to 'Resend Code', resend_code_path, class: 'underline' %>
+          <% end %>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Countdown for the verification code expiry
+  const expiryTime = new Date("<%= current_user.phone_verification_code_expires_at %>").getTime();
+  const countdownElement = document.getElementById('time-left');
+  const resendButton = document.getElementById('resend-code-button'); // Add the resend button element
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = expiryTime - now;
+
+    if (distance < 0) {
+      countdownElement.innerHTML = "";  // Clear the countdown text
+      countdownElement.classList.remove("text-red-500"); // Remove red text color
+      resendButton.style.display = "block";  // Show the resend code button
+      return;
+    }
+
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    countdownElement.innerHTML = `${minutes}m ${seconds}s`;
+
+    // Update text color to red when countdown reaches 0
+    if (distance <= 0) {
+      countdownElement.classList.add("text-red-500");
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+</script>
+
