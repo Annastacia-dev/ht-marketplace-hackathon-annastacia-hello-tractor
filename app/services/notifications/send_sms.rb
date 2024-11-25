@@ -32,7 +32,6 @@ class Notifications::SendSms < ApplicationService
       @success_count += 1
       puts 'SMS sent successfully'
     else
-      @failure_count += 1
       puts 'Failed to send SMS'
       @failure_reasons << "#{request[0].status} - #{request[0].number} for #{user.name}"
     end
