@@ -3,11 +3,11 @@
 # Table name: tractors
 #
 #  id                  :uuid             not null, primary key
-#  brand               :string           not null
 #  condition           :integer          not null
 #  description         :text
 #  hours_used          :string
 #  location            :string
+#  make                :string           not null
 #  model               :string           not null
 #  price               :string
 #  publishing_status   :integer          default("publish")

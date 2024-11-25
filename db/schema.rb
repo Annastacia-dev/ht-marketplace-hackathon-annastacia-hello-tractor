@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_23_092754) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_24_074953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -54,6 +54,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_23_092754) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "sender_id", null: false
+    t.uuid "receiver_id", null: false
+    t.string "item_type"
+    t.bigint "item_id"
+    t.text "content"
+    t.integer "status", default: 0
+    t.datetime "send_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_type", "item_id"], name: "index_messages_on_item"
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
   create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.string "subject"
@@ -87,7 +102,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_23_092754) do
 
   create_table "tractors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "tractor_listing_id", null: false
-    t.string "brand", null: false
+    t.string "make", null: false
     t.string "model", null: false
     t.text "description"
     t.integer "condition", null: false
@@ -136,6 +151,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_23_092754) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "notifications", "users"
   add_foreign_key "push_subscriptions", "users"
   add_foreign_key "tractor_listings", "users"

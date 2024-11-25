@@ -1,0 +1,28 @@
+<div class="min-h-screen bg-gray-100 px-4 antialiased flex flex-col pt-20">
+
+ <%= render 'components/breadcrumb', breadcrumbs: [
+    {text: 'home', path: root_path},
+    {text: 'tractors', path: tractors_path}
+  ] %>
+
+ <div class="grid lg:grid-cols-2 pt-6">
+    <div class="col-span-1">
+      <% if @tractor.images.attached? %>
+        <%= image_tag(@tractor.images[0], alt: "#{@tractor.name}", class: "w-3/4 h-72 object-cover rounded") %>
+      <% end %>
+      <% if @tractor.images.attached? %>
+        <div class="flex mt-3">
+            <% @tractor.images.each do |image| %>
+              <%= image_tag(image, alt: "#{@tractor.name}", class: "w-1/3 h-20 object-cover rounded") %>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+
+    <div class="col-span-1">
+        <h3 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        <%= @tractor.name %>
+        </h3>
+    </div>
+  </div>
+</div>

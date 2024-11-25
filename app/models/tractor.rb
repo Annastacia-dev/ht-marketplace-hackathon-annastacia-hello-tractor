@@ -3,11 +3,11 @@
 # Table name: tractors
 #
 #  id                  :uuid             not null, primary key
-#  brand               :string           not null
 #  condition           :integer          not null
 #  description         :text
 #  hours_used          :string
 #  location            :string
+#  make                :string           not null
 #  model               :string           not null
 #  price               :string
 #  publishing_status   :integer          default("publish")
@@ -34,7 +34,7 @@ class Tractor < ApplicationRecord
   belongs_to :tractor_listing
   has_one :user, through: :tractor_listing, dependent: :destroy
 
-  validates :brand, presence: true
+  validates :make, presence: true
   validates :model, presence: true
   validates :year_of_manufacture, presence: true
 
@@ -57,6 +57,10 @@ class Tractor < ApplicationRecord
   }
 
   def name
-    "#{brand} #{model}"
+    "#{make} #{model}"
+  end
+
+  def tractor_location
+    location || user.location
   end
 end

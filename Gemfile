@@ -31,6 +31,7 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 gem "redis", ">= 4.0.1"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem 'will_paginate', '~> 4.0', '>= 4.0.1'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

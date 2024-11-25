@@ -1,10 +1,10 @@
-<main class="px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
+<main class="px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 pt-24">
 
   <div class="lg:col-span-5 flex flex-col gap-7">
     <h1 class="text-4xl font-bold">Your Trusted Marketplace for Tractors and Implements.</h1>
     <div class="flex md:flex-row flex-col gap-4">
       <button class="btn-primary w-fit">
-        <%= link_to 'Browse Catalog', new_user_session_path, method: :get %>
+        <%= link_to 'Browse Tractors', tractors_path, method: :get %>
        <i class="fa-solid fa-square-arrow-up-right ml-2"></i>
       </button>
       <button class="btn-outline w-fit">

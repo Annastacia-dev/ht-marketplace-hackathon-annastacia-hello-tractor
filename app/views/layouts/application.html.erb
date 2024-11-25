@@ -35,6 +35,11 @@
           <div id="progress-bar" data-main-target="progressBar" class="progress-bar"></div>
         </div>
       <% end %>
+
+      <% if !current_user %>
+        <%= render 'home/navbar' %>
+      <% end %>
+
       <%= yield %>
     </main>
     <% if current_user && current_user.is_phone_verified? %>

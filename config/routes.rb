@@ -17,10 +17,12 @@ Rails.application.routes.draw do
    get 'verify_phone', to: 'users/phone_verifications#new', as: :verify_phone
    post 'verify_phone', to: 'users/phone_verifications#verify'
    get 'resend_code', to: 'users/phone_verifications#resend_code', as: 'resend_code'
+   get 'marketplace', to: 'home#marketplace'
 
   resources :tractor_listings do
     resources :tractors
   end
   resources :sellers
   resources :push_subscriptions
+  resources :tractors, only: [:index, :show]
 end
