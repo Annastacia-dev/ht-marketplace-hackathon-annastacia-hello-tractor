@@ -2,7 +2,7 @@
   <%= render 'components/breadcrumb', breadcrumbs: [
     {text: 'Home', path: root_path},
     {text: 'Dealers', path: dealers_path},
-    {text: 'New Dealer'}
+    {text: "Edit Dealer {@dealer.name}"}
   ] %>
 
   <%= render 'dealers/form', dealer: @dealer %>

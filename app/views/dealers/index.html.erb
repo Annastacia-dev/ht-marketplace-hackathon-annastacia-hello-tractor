@@ -1,0 +1,43 @@
+<div class="flex flex-col">
+  <%= render 'components/breadcrumb', breadcrumbs: [
+    {text: 'Home', path: root_path},
+    {text: 'Dealers', path: dealers_path }
+  ] %>
+
+  <h1 class="text-2xl font-bold text-gray-800 capitalize mt-4">Sellers (<%= @dealers.size %>)</h1>
+
+  <% unless @dealers.empty? %>
+    <div class="overflow-x-auto mt-4 bg-white rounded-md shadow-sm border border-gray-200">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-100 text-gray-600">
+          <tr>
+            <th class="p-3 border-b border-gray-200 uppercase">Name</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Locations</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @dealers.each_with_index do |dealer, index| %>
+            <tr class="<%= index.even? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100 transition-colors">
+              <td class="p-3 border-b border-gray-200 flex lg:flex-row flex-col items-center gap-3">
+                <%= dealer.name %>
+              </td>
+              <td class="p-3 border-b border-gray-200"><%= dealer.locations.size %></td>
+              <td class="p-3 border-b border-gray-200">
+                 <%= render 'components/drawer', button_icon: 'fa-solid fa-plus', button_text: 'add location', title: 'Add Location', id: 'new_location', button_class: 'rounded py-2 px-4 font-medium capitalize flex gap-2 items-center text-blue-500'  do %>
+                   <%= render 'locations/form', location: Location.new, user: dealer %>
+                 <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="bg-white rounded-md shadow-sm p-6 border border-gray-200 min-h-[200px] flex flex-col justify-center items-center mt-4 gap-4">
+      <p class="text-gray-500 text-center">
+        There are no dealers yet.
+      </p>
+    </div>
+  <% end %>
+</div> 

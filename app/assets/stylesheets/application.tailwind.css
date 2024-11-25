@@ -44,11 +44,11 @@
   }
 
   .btn-secondary {
-    @apply bg-secondaryPlum text-white hover:text-secondaryPlum px-4 py-2 rounded-full hover:bg-transparent border border-secondaryPlum transition duration-300 flex items-center;
+    @apply bg-secondaryPlum text-white hover:text-secondaryPlum px-4 py-2 rounded-full hover:bg-transparent border border-secondaryPlum transition duration-300 flex items-center cursor-pointer;
   }
 
   .btn-outline {
-    @apply border border-secondaryCharcoal text-secondaryCharcoal hover:bg-secondaryCharcoal hover:text-white px-4 py-2 rounded-full transition duration-300 flex items-center;
+    @apply border border-secondaryCharcoal text-secondaryCharcoal hover:bg-secondaryCharcoal hover:text-white px-4 py-2 rounded-full transition duration-300 flex items-center cursor-pointe;
   }
 
   .form-input {

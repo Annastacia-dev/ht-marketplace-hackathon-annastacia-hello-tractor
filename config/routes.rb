@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   resources :sellers
   resources :push_subscriptions
   resources :tractors, only: [:index, :show]
+  resources :dealers
+  resources :locations
 end

@@ -44,6 +44,12 @@ module LinksHelper
       icon_class: 'fa-solid fa-shop',
       menu_text: 'Sellers',
     )
+
+    items.push(
+      path: dealers_path,
+      icon_class: 'fa-solid fa-wrench',
+      menu_text: 'Dealers',
+    )
   end
 
   def bottom_nav_links

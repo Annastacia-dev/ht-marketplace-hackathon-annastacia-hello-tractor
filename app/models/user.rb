@@ -39,6 +39,7 @@ class User < ApplicationRecord
   has_one :tractor_listing, dependent: :destroy
   has_many :tractors, through: :tractor_listing, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :locations, dependent: :destroy
 
   validates :name, presence: true
   validates :phone, presence: true, format: { with: /\A\d{10}\z/, message: "must be a 10-digit number" }, uniqueness: true
@@ -56,6 +57,7 @@ class User < ApplicationRecord
     implements: 1,
     spare_parts: 2,
     operators: 3,
+    comprehensive: 4
   }
 
   after_create :create_tractor_listing

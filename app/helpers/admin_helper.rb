@@ -13,7 +13,7 @@ module AdminHelper
 
     [
       {text: 'Sellers', path: sellers_path, icon: 'fa-solid fa-tractor', count: @sellers.size, color: 'orange'},
-      {text: 'Dealers', path: '', icon: 'fa-solid fa-wrench', count: @dealers.size, color: 'green'}
+      {text: 'Dealers', path: dealers_path, icon: 'fa-solid fa-wrench', count: @dealers.size, color: 'green'}
     ]
   end
 

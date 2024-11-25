@@ -10,7 +10,7 @@
 #  make                :string           not null
 #  model               :string           not null
 #  price               :string
-#  publishing_status   :integer          default("publish")
+#  publishing_status   :integer          default("ready_for_approval")
 #  selling_status      :integer          default("for_sale")
 #  stock_quantity      :string
 #  year_of_manufacture :string           not null
