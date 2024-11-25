@@ -42,6 +42,43 @@ Please organize and complete the following deliverables within this repository:
 
 ### 4. **Technical Documentation**
 - Include setup instructions for running the project locally.
+
+#### Requirements
+You'll need the following installed to run the project successfully:
+
+Ruby 3.2+
+Node.js v20+
+PostgreSQL 15+
+Redis - For ActionCable support (and Sidekiq, caching, etc)
+Foreman - `gem install foreman` - helps run all your processes in development
+
+#### Initial Setup
+First, clone the app
+
+```dotnetcli
+git clone https://github.com/Hello-Tractor-Community/ht-marketplace-hackathon-annastacia-hello-tractor
+cd ht-marketplace-hackathon-annastacia-hello-tractor
+```
+Run `bin/setup` to install Ruby and JavaScript dependencies and setup your database.
+
+```dotnetcli
+  bin/setup
+```
+
+#### Running The Project
+To run your application, you'll use the bin/dev command:
+
+```
+bin/dev
+```
+
+This starts up Foreman (or Overmind) running the processes defined in `Procfile.dev`. We've configured this to run the Rails server, CSS bundling, and JS bundling out of the box. You can add background workers like Sidekiq, etc to have them run at the same time.
+
+
+
+
+
+
 - Provide any architecture diagrams or flowcharts explaining the design.
 - **Documentation**: Add details in a `docs/` folder or link to relevant markdown files.
 
