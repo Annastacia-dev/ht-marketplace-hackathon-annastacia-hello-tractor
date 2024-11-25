@@ -1,0 +1,61 @@
+<div class="container">
+ <div class="flex lg:flex-row flex-col justify-between items-center">
+    <h1 class="text-xl font-bold">Hello <%= current_user.name %></h1>
+    <%= render 'components/dropdown', title: 'Actions', icon_class: 'fa-solid fa-caret-down', items: admin_dropdown_items %>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+    <% admin_dashboard_items.each do |item| %>
+      <%= render 'dashboards/dashboard_card', item: item %>
+    <% end %>
+  </div>
+
+  <div class="mt-10">
+    <h5 class="font-semibold"> Listings Ready For Approval </h5>
+
+    <% unless @tractors_for_approval.empty? %>
+    <div class="overflow-x-auto mt-4 bg-white rounded-md shadow-sm border border-gray-200">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-100 text-gray-600">
+          <tr>
+            <th class="p-3 border-b border-gray-200 uppercase">Tractor</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Price</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Publishing Status</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Selling Status</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tractors_for_approval.each_with_index do |tractor, index| %>
+            <tr class="<%= index.even? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100 transition-colors">
+              <td class="p-3 border-b border-gray-200 flex lg:flex-row flex-col items-center gap-3">
+                <% if tractor.images.attached? %>
+                  <%= image_tag(tractor.images[0], class: "w-16 h-16 object-cover rounded-md", alt: "Tractor Image") %>
+                <% end %>
+                <%= link_to tractor.name, tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: 'text-blue-500 underline' %>
+              </td>
+              <td class="p-3 border-b border-gray-200"><%= number_with_delimiter tractor.price %></td>
+              <td class="p-3 border-b border-gray-200">
+               <span class="py-1 px-2 font-semibold rounded text-xs <%= publishing_status_badge_class(tractor.publishing_status) %>"><%= tractor.publishing_status.humanize %></span>
+              </td>
+              <td class="p-3 border-b border-gray-200"><%= tractor.selling_status.humanize %></td>
+              <td class="p-3 border-b border-gray-200 space-x-4">
+                <!-- Actions (e.g., Edit/Delete) -->
+                <%= link_to 'Approve', edit_tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: 'hover:underline  text-green-500' %>
+                <%= link_to 'Reject', edit_tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: 'hover:underline text-red-500' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="bg-white rounded-md shadow-sm p-6 border border-gray-200 min-h-[200px] flex flex-col justify-center items-center mt-4 gap-4">
+      <p class="text-gray-500 text-center">
+        No Tractors To Approve.
+      </p>
+    </div>
+  <% end %>
+
+  </div>
+</div>

@@ -1,8 +1,9 @@
-<div class="min-h-screen bg-gray-100 px-4 antialiased flex flex-col pt-20">
+<div class="min-h-screen <%= current_user ? '' : 'px-4 pt-20' %> flex flex-col">
 
  <%= render 'components/breadcrumb', breadcrumbs: [
     {text: 'home', path: root_path},
-    {text: 'tractors', path: tractors_path}
+    {text: 'tractors', path: tractors_path},
+    {text: "#{@tractor.name}"}
   ] %>
 
  <div class="grid lg:grid-cols-2 pt-6">

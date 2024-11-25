@@ -47,13 +47,15 @@ class User < ApplicationRecord
   enum role: {
     buyer: 0,
     seller: 1,
-    admin: 2
+    admin: 2,
+    dealer: 3
   }
 
   enum dealer_type: {
     tractors: 0,
-    spare_parts: 1,
-    operators: 2,
+    implements: 1,
+    spare_parts: 2,
+    operators: 3,
   }
 
   after_create :create_tractor_listing

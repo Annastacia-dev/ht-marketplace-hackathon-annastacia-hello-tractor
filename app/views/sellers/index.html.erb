@@ -13,7 +13,7 @@
           <tr>
             <th class="p-3 border-b border-gray-200 uppercase">Name</th>
             <th class="p-3 border-b border-gray-200 uppercase">Location</th>
-            <th class="p-3 border-b border-gray-200 uppercase">Active Listings</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Total Listings</th>
             <th class="p-3 border-b border-gray-200 uppercase">Actions</th>
           </tr>
         </thead>
@@ -30,10 +30,10 @@
                 <% end %>
               </td>
               <td class="p-3 border-b border-gray-200"><%= seller.location %></td>
-              <td class="p-3 border-b border-gray-200"><%= seller.tractor_listing.tractors.where(selling_status: :for_sale).size %></td>
+              <td class="p-3 border-b border-gray-200"><%= seller.tractor_listing.tractors.size %></td>
               <td class="p-3 border-b border-gray-200 text-blue-500">
                 <!-- Actions (e.g., Edit/Delete) -->
-                <%= link_to 'Inactivate','', class: 'hover:underline' %>
+                <%= link_to 'Suspend','', class: 'hover:underline' %>
               </td>
             </tr>
           <% end %>

@@ -16,7 +16,8 @@
           <tr>
             <th class="p-3 border-b border-gray-200 uppercase">Tractor</th>
             <th class="p-3 border-b border-gray-200 uppercase">Price</th>
-            <th class="p-3 border-b border-gray-200 uppercase">Status</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Publishing Status</th>
+            <th class="p-3 border-b border-gray-200 uppercase">Selling Status</th>
             <th class="p-3 border-b border-gray-200 uppercase">Actions</th>
           </tr>
         </thead>
@@ -30,6 +31,9 @@
                 <%= tractor.name %>
               </td>
               <td class="p-3 border-b border-gray-200"><%= number_with_delimiter tractor.price %></td>
+              <td class="p-3 border-b border-gray-200">
+               <span class="py-1 px-2 font-semibold rounded text-xs <%= publishing_status_badge_class(tractor.publishing_status) %>"><%= tractor.publishing_status.humanize %></span>
+              </td>
               <td class="p-3 border-b border-gray-200"><%= tractor.selling_status.humanize %></td>
               <td class="p-3 border-b border-gray-200 text-blue-500">
                 <!-- Actions (e.g., Edit/Delete) -->

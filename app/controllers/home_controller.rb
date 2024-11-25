@@ -11,9 +11,10 @@ class HomeController < ApplicationController
       @tractors = @tractors.where(location: params[:location]) if params[:location].present?
       @tractors = @tractors.where("hours_used <= ?", params[:max_hours]) if params[:max_hours].present?
 
-
       # Pagination (optional)
       @tractors = @tractors.paginate(page: params[:page], per_page: 20)
+    elsif current_user.admin?
+      @tractors_for_approval = Tractor.where(publishing_status: :ready_for_approval).where(selling_status: :for_sale)
     end
   end
 
