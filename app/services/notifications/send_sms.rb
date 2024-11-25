@@ -21,7 +21,7 @@ class Notifications::SendSms < ApplicationService
     return if notification.nil?
 
     user = notification.user
-    request = Africastalking.send_sms(
+    request = Modules::Africastalking.send_sms(
       message: notification.message,
       to: user.phone
     )
