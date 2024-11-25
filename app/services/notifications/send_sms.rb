@@ -29,7 +29,6 @@ class Notifications::SendSms < ApplicationService
     puts request
 
     if request[0].status == 'Success'
-      @success_count += 1
       puts 'SMS sent successfully'
     else
       puts 'Failed to send SMS'
