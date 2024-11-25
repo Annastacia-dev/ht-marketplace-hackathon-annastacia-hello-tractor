@@ -1,0 +1,6 @@
+- **Project Name**: ht-marketplace-hackathon-annastacia-hello-tractor
+- **Team Members**: Annastacia Mumbua | Annastacia-dev
+- **Tech Stack**: Ruby on Rails, Tailwind CSS, Sidekiq, PostgreSQL, Africas Talking
+- **Key Features**: [Briefly list the implemented features]
+- **Challenges**: [Summarize major challenges faced and how they were solved]
+- **Lessons Learned**: [Highlight key takeaways from the project]
