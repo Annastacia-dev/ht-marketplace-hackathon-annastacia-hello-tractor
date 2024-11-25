@@ -4,7 +4,10 @@
     {text: 'Tractor Listings', path: tractor_listings_path }
   ] %>
 
-  <h1 class="text-2xl font-bold text-gray-800 capitalize mt-4">Tractors (<%= @tractor_listing.tractors.size %>)</h1>
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-800 capitalize mt-4">Tractors (<%= @tractor_listing.tractors.size %>)</h1>
+     <%= link_to 'Add Tractor', new_tractor_listing_tractor_path(@tractor_listing), class: 'btn-primary' %>
+  </div>
 
   <% unless @tractor_listing.tractors.empty? %>
     <div class="overflow-x-auto mt-4 bg-white rounded-md shadow-sm border border-gray-200">

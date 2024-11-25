@@ -2,7 +2,7 @@ module LinksHelper
   def sidebar_items
     items  =  [
       {
-        menu_text: 'Dashboard',
+        menu_text: current_user.buyer? ? 'Home' : 'Dashboard',
         icon_class: 'fa-solid fa-house',
         path: root_path
       }
@@ -49,7 +49,7 @@ module LinksHelper
   def bottom_nav_links
     items  =  [
       {
-        menu_text: 'Dashboard',
+        menu_text: current_user.buyer? ? 'Home' : 'Dashboard',
         icon_class: 'fa-solid fa-house',
         path: root_path
       }

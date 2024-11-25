@@ -1,0 +1,9 @@
+<div class="container">
+  <%= render 'components/breadcrumb', breadcrumbs: [
+    {text: 'Home', path: root_path},
+    {text: 'Tractor Listing', path: tractor_listing_path(current_user.tractor_listing)},
+    {text: 'New Tractor'}
+  ] %>
+
+  <%= render 'tractors/form', tractor: Tractor.new %>
+</div>

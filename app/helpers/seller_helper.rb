@@ -2,7 +2,7 @@ module SellerHelper
 
   def seller_dropdown_items
     [
-      {text: 'New Tractor', path: new_tractor_listing_tractor_path(current_user.tractor_listing), icon_class: 'fa-solid fa-tractor', menu_text: 'New Tractor'}
+      { path: new_tractor_listing_tractor_path(current_user.tractor_listing ), icon_class: 'fa-solid fa-tractor', menu_text: 'Add a tractor', type: 'drawer', id: 'new_tractor', view: 'tractors/new' }
     ]
   end
 

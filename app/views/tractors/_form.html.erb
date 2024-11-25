@@ -13,17 +13,35 @@
         <%= f.text_field :model, class: 'form-input' %>
       </div>
       <div class="flex flex-col gap-2">
-        <%= f.label :year_of_manufacture %>
-        <%= f.select :year_of_manufacture, (1900..Date.today.year).to_a.reverse, {}, class: 'form-input' %>
+        <%= f.label :location %>
+        <%= f.text_field :location, value: current_user.location, class: 'form-input' %>
       </div>
       <div class="flex flex-col gap-2">
-        <%= f.label :hours_used %>
-        <%= f.number_field :hours_used, class: 'form-input' %>
+        <%= f.label :year_of_manufacture %>
+        <%= f.select :year_of_manufacture, (1900..Date.today.year).to_a.reverse, {}, class: 'form-input' %>
       </div>
       <div class="flex flex-col gap-2">
         <%= f.label :condition %>
         <%= f.select :condition, tractor.class.conditions.keys.map { |condition| [condition.titleize, condition] }, {}, class: 'form-input' %>
       </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :hours_used %>
+        <%= f.number_field :hours_used, class: 'form-input' %>
+      </div>
+
+      <% if current_user.admin? %>
+        <%= f.label :publishing_status %>
+        <%= f.select :publishing_status, tractor.class.publishing_statuses.keys.map { |status| [status.titleize, status] }, {}, class: 'form-input' %>
+      <% else %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :publishing_status %>
+          <select class="form-input">
+            <option value="ready_for_approval"> Submit for approval</option>
+            <option value="draft">Draft</option>
+          </select>
+        </div>
+      <% end %>
+
       <div class="flex flex-col gap-2">
         <%= f.label :price %>
         <%= f.number_field :price, class: 'form-input' %>
@@ -49,7 +67,7 @@
       </div>
     </div>
 
-    <%= render 'images_dropzone', f: f  %>
+    <%= render 'tractors/images_dropzone', f: f  %>
 
-    <%= f.submit 'Add Tractor', class: 'w-fit btn-primary mt-4' %>
+    <%= f.submit class: 'w-fit btn-primary mt-4' %>
 <% end %>

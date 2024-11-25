@@ -46,9 +46,11 @@ class Tractor < ApplicationRecord
   }
 
   enum publishing_status: {
-    publish: 0,
+    ready_for_approval: 0,
     draft: 1,
-    archive: 2
+    approved: 2,
+    rejected: 3,
+    archived: 4
   }
 
   enum selling_status: {
@@ -62,7 +64,7 @@ class Tractor < ApplicationRecord
   against: [:make, :model],
   using: {
     tsearch: { prefix: true },
-    trigram: {}
+    trigram: { threshold: 0.2 }
   }
 
   def name

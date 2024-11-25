@@ -38,10 +38,15 @@ class TractorsController < ApplicationController
   def show
   end
 
-  def edit
-  end
 
   def update
+    respond_to do |format|
+      if @tractor.update(tractor_params)
+          format.html { redirect_to tractor_listing_tractor_path(@tractor_listing, @tractor), notice: "Tractor was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
