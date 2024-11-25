@@ -38,6 +38,7 @@ class Notifications::SendSms < ApplicationService
 
   def results
     if @failure_reasons.any?
+      puts @failure_reasons
       Result.new(success: false, reasons: @failure_reasons)
     else
       Result.new(success: true)
