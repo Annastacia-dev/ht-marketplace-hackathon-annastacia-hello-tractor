@@ -56,6 +56,15 @@ class Tractor < ApplicationRecord
     sold: 1
   }
 
+  include PgSearch::Model
+
+  pg_search_scope :search_by_make_and_model,
+  against: [:make, :model],
+  using: {
+    tsearch: { prefix: true },
+    trigram: {}
+  }
+
   def name
     "#{make} #{model}"
   end

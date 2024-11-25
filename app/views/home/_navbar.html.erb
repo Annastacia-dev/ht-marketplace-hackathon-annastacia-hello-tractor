@@ -1,6 +1,17 @@
 <header class="bg-gray-100 shadow-md text-secondaryCharcoal text-sm fixed w-full">
     <div class="px-4 py-3 flex justify-between items-center">
       <nav>
+        <div class="md:hidden">
+            <button class="focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden'); document.getElementById('menu-closed').classList.toggle('hidden'); document.getElementById('menu-open').classList.toggle('hidden')">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="menu-closed">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                <svg class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="menu-open">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
         <ul class="md:flex hidden space-x-4 font-bold">
           <li class="hover:underline hover:text-primarySunset"over:underline hover:text-primarySunset">
             <%= link_to 'Tractors', root_path, class: 'hover:underline' %>
@@ -23,20 +34,10 @@
         <%= image_tag "logos/orange.png", class: "absolute top-1/2  transform -translate-x-1/2 -translate-y-1/2 w-28" %>
       <% end %>
 
-       <div class="md:hidden">
-          <button class="focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden'); document.getElementById('menu-closed').classList.toggle('hidden'); document.getElementById('menu-open').classList.toggle('hidden')">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="menu-closed">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-              </svg>
-              <svg class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="menu-open">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-          </button>
-      </div>
 
-      <div class="md:flex hidden">
+      <div class="">
         <ul class="flex space-x-4 font-bold">
-          <li class="relative">
+          <li class="relative md:flex hidden">
             <input type="text" placeholder="Search" class="btn-outline bg-transparent text-sm">
             <i class="fa-solid fa-magnifying-glass text-gray-400 absolute right-4 top-4 transform -translate-y-1/2"></i>
           </li>
@@ -48,4 +49,4 @@
     </div>
 </header>
 
-<%= render 'mobile_navbar' %>
+<%= render 'home/mobile_navbar' %>

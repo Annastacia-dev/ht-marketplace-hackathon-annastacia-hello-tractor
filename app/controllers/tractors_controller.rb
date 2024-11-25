@@ -7,7 +7,7 @@ class TractorsController < ApplicationController
 
     @tractors = Tractor.all
 
-    @tractors = @tractors.where("make LIKE ?", "%#{params[:make]}%") if params[:make].present?
+    @tractors = @tractors.search_by_make_and_model(params[:make]) if params[:make].present?
     @tractors = @tractors.where("model LIKE ?", "%#{params[:model]}%") if params[:model].present?
     @tractors = @tractors.where(price: params[:min_price]..params[:max_price]) if params[:min_price].present? && params[:max_price].present?
     @tractors = @tractors.where(location: params[:location]) if params[:location].present?
@@ -58,6 +58,6 @@ class TractorsController < ApplicationController
   end
 
   def tractor_params
-    params.require(:tractor).permit([:make, :model, :description, :condition, :year_of_manufacture, :hours_used, :location, :price, :publishing_status, :selling_status, :images])
+    params.require(:tractor).permit([:make, :model, :description, :condition, :year_of_manufacture, :hours_used, :location, :price, :publishing_status, :selling_status, images: []])
   end
 end
