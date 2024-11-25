@@ -4,8 +4,8 @@ module Modules
   class Africastalking
     def initialize
       if Rails.env.production?
-        username = Rails.application.credentials.africas_talking[:prod_username]
-        api_key = Rails.application.credentials.africas_talking[:prod_api_key]
+        username = ENV.fetch('AT_PROD_USERNAME')
+        api_key = ENV.fetch('AT_PROD_API_KEY')
       else
         username = Rails.application.credentials.africas_talking[:sandbox_username]
         api_key = Rails.application.credentials.africas_talking[:sandbox_api_key]
