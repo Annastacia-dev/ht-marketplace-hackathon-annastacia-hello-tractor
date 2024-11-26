@@ -26,7 +26,7 @@ class Notifications::SendSms < ApplicationService
       to: user.phone
     )
 
-    puts request
+    puts request[0]
 
     if request[0].status == 'Success'
       puts 'SMS sent successfully'
