@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   resources :tractors, only: [:index, :show]
   resources :dealers
   resources :locations
+  resources :messages do
+    resources :message_responses
+  end
 end

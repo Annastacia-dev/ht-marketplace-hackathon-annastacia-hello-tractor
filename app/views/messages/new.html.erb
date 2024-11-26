@@ -1,27 +1,26 @@
-<%= form_with model: @notification, url: messages_path, local: true do |f| %>
-  <h1>Message Buyer</h1>
+<%= form_with  url: messages_path, method: :post, local: true do |f| %>
+  <h1>Chat with Buyer</h1>
   
-  <% if @image.present? %>
-    <div>
-      <%= image_tag @image.url, alt: 'Tractor Image', class: 'max-w-xs' %>
-    </div>
+  <% if params[:item_type] == 'tractor' %>
+    <% @tractor = Tractor.find_by(id: params[:item_id]) %>
+    <%= f.hidden_field :item_id, value: @tractor.id %>
+    <%= f.hidden_field :item_type, value: 'Tractor' %>
+    <% if @tractor && @tractor.images.any? %>
+      <%= image_tag(@tractor.images[0], class: "w-16 h-16 object-cover rounded-md", alt: "Tractor Image") %>
+    <% end %>
   <% end %>
 
-  <div>
-    <%= f.label :subject, 'Subject' %>
-    <%= f.text_field :subject, class: 'form-input' %>
+  <div class="chat-interface mt-5">
+    <%= f.label :content, 'Your Message', class: 'sr-only' %>
+    <%= f.text_area :content, placeholder: 'Type your message...', class: 'form-textarea w-full p-2 border rounded-lg', rows: 3 %>
   </div>
 
-  <div>
-    <%= f.label :message, 'Message' %>
-    <%= f.text_area :message, class: 'form-textarea' %>
-  </div>
 
-  <%= f.hidden_field :link, value: tractor_path(@tractor.tractor_listing, @tractor) %>
-  <%= f.hidden_field :link_text, value: 'View Tractor' %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :sender_id, value: params[:sender] %>
+  <%= f.hidden_field :send_at, value: Time.now %>
+  <%= f.hidden_field :receiver_id, value: params[:receiver] %>
 
-  <div>
-    <%= f.submit 'Send Message', class: 'btn-primary' %>
+  <div class="mt-4 text-right">
+    <%= f.submit 'Send', class: 'btn-primary px-4 py-2 rounded-lg' %>
   </div>
 <% end %>

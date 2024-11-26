@@ -21,7 +21,7 @@
             </div>
             <div class="p-2 text-sm flex justify-between">
               <%= link_to 'View Details', tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: "text-indigo-600 hover:underline" %>
-               <%= link_to 'Message Buyer', tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: "text-indigo-600 hover:underline" %>
+              <%= link_to 'Message Seller', new_message_path(sender: current_user, receiver: tractor.user, item_id:  tractor, item_type: 'tractor'), class: "text-indigo-600 hover:underline" %>
             </div>
           </div>
         <% end %>

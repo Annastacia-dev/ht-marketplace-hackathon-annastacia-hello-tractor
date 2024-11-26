@@ -26,22 +26,14 @@ class Notifications::SendSms < ApplicationService
       to: user.phone
     )
 
-    puts request[0]
+    puts request[0].status
+
 
     if request[0].status == 'Success'
       puts 'SMS sent successfully'
     else
       puts 'Failed to send SMS'
       @failure_reasons << "#{request[0].status} - #{request[0].number} for #{user.name}"
-    end
-  end
-
-  def results
-    if @failure_reasons.any?
-      puts @failure_reasons
-      Result.new(success: false, reasons: @failure_reasons)
-    else
-      Result.new(success: true)
     end
   end
 end

@@ -62,9 +62,7 @@
       </div>
     </div>
 
-    <% if action_name == 'new' %>
-      <%= render 'tractors/images_dropzone', f: f  %>
-    <% end %>
+    <%= render 'tractors/images_dropzone', f: f  %>
 
     <%= f.submit class: 'w-fit btn-primary mt-4' %>
 <% end %>
