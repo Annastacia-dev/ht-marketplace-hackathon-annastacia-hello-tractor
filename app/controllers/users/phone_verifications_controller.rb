@@ -20,7 +20,7 @@ class Users::PhoneVerificationsController < ApplicationController
 
   def resend_code
     verification_code = rand(100000..999999)
-    expiration_time = Time.now + 1.minute
+    expiration_time = Time.now + 5.minutes
 
     notification = Notification.create!(
       user: current_user,
