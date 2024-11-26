@@ -16,6 +16,8 @@
          - Adminuser has a great user interface to see all sellers on the website and quick buttons to approve listings for postings.
      5. Messaging
          - Buyers and sellers can message on the platform about a listing.
+     6. PWA
+         - Progressive web app capabilities. It's installable and supports push notifications.
        
     
 - **Challenges**
