@@ -11,25 +11,47 @@
         <%= link_to 'Sell Your Tractor', new_user_registration_path, method: :get %>
       </button>
     </div>
-    <div class="h-96 relative hover:scale-[1.01] transition duration-300 cursor-pointer">
-      <div class="absolute inset-0 bg-black opacity-60 rounded-lg"></div>
-      <%= image_tag "tractor-one.jpg", class: "w-full h-full object-cover rounded-lg" %>
-      <div class="absolute inset-0 flex flex-col gap-4 justify-end px-4 mb-4">
-        <h2 class="text-white text-2xl font-bold">Today's Featured Tractor</h2>
-        <p class="text-white">
-          <i class="fa-solid fa-tractor mr-2"></i>
-          John Deere 5075E
-        </p>
-        <p class="text-white">
-          <i class="fa-solid fa-dollar-sign mr-2"></i>
-          KES 1,350,000
-        </p>
-        <button class="btn-secondary w-fit">
-          <%= link_to 'View Details', new_user_session_path, method: :get %>
-          <i class="fa-solid fa-arrow-right ml-2"></i>
-        </button>
+    <% unless @tractors.empty? %>
+      <div class="h-96 relative hover:scale-[1.01] transition duration-300 cursor-pointer">
+        <div class="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
+        <%= image_tag @tractors.first.images[0], class: "w-full h-full object-cover rounded-lg" %>
+        <div class="absolute inset-0 flex flex-col gap-4 justify-end px-4 mb-4">
+          <h2 class="text-white text-2xl font-bold">Today's Featured Tractor</h2>
+          <p class="text-white">
+            <i class="fa-solid fa-tractor mr-2"></i>
+            <%= @tractors.first.name %>
+          </p>
+          <p class="text-white">
+            <i class="fa-solid fa-dollar-sign mr-2"></i>
+            KES <%= number_with_delimiter @tractors.first.price %>
+          </p>
+          <button class="btn-secondary w-fit">
+            <%= link_to 'View Details', tractor_listing_tractor_path(@tractors.first.tractor_listing, @tractors.first), method: :get %>
+            <i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <div class="h-96 relative hover:scale-[1.01] transition duration-300 cursor-pointer">
+        <div class="absolute inset-0 bg-black opacity-60 rounded-lg"></div>
+        <%= image_tag "tractor-one.jpg", class: "w-full h-full object-cover rounded-lg" %>
+        <div class="absolute inset-0 flex flex-col gap-4 justify-end px-4 mb-4">
+          <h2 class="text-white text-2xl font-bold">Today's Featured Tractor</h2>
+          <p class="text-white">
+            <i class="fa-solid fa-tractor mr-2"></i>
+            John Deere 5075E
+          </p>
+          <p class="text-white">
+            <i class="fa-solid fa-dollar-sign mr-2"></i>
+            KES 1,350,000
+          </p>
+          <button class="btn-secondary w-fit">
+            <%= link_to 'View Details', new_user_session_path, method: :get %>
+            <i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="lg:col-span-3 flex flex-col gap-4">

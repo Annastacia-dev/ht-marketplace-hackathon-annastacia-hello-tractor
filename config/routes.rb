@@ -20,7 +20,10 @@ Rails.application.routes.draw do
    get 'marketplace', to: 'home#marketplace'
 
   resources :tractor_listings do
-    resources :tractors
+    resources :tractors do
+      get 'approve', on: :member
+      get 'reject', on: :member
+    end
   end
   resources :sellers
   resources :push_subscriptions

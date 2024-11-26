@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def generate_verification_code(resource)
     verification_code = rand(100000..999999)
-    expiration_time = Time.now + 5.minutes
+    expiration_time = Time.now + 1.minute
 
     notification = Notification.create!(
       user: resource,

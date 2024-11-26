@@ -20,7 +20,7 @@ class Users::SessionsController < Devise::SessionsController
 
     resource.update(
       phone_verification_code: verification_code,
-      phone_verification_code_expires_at: Time.now + 5.minutes
+      phone_verification_code_expires_at: Time.now + 1.minute
     )
 
     SendSmsWorker.perform_async(notification.id)

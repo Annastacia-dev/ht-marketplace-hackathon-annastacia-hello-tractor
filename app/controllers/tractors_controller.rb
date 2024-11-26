@@ -1,11 +1,11 @@
 class TractorsController < ApplicationController
   before_action :set_tractor_listing, except: [:index]
-  before_action :set_tractor, only: [:show, :edit, :update, :destroy]
+  before_action :set_tractor, only: [:show, :edit, :update, :destroy, :approve, :reject]
   skip_before_action :authenticate_user! , only: [:index, :show]
 
   def index
 
-    @tractors = Tractor.all
+    @tractors = Tractor.where(publishing_status: :approved, selling_status: :for_sale)
 
     @tractors = @tractors.search_by_make_and_model(params[:make]) if params[:make].present?
     @tractors = @tractors.where("model LIKE ?", "%#{params[:model]}%") if params[:model].present?
@@ -43,6 +43,26 @@ class TractorsController < ApplicationController
     respond_to do |format|
       if @tractor.update(tractor_params)
           format.html { redirect_to tractor_listing_tractor_path(@tractor_listing, @tractor), notice: "Tractor was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def approve
+    respond_to do |format|
+      if @tractor.update(publishing_status: :approved)
+          format.html { redirect_to root_path, notice: "Tractor was successfully approved." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def reject
+    respond_to do |format|
+      if @tractor.update(publishing_status: :rejected)
+          format.html { redirect_to root_path, notice: "Tractor was successfully rejected." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

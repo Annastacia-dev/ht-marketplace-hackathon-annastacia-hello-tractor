@@ -1,0 +1,27 @@
+<%= form_with model: @notification, url: messages_path, local: true do |f| %>
+  <h1>Message Buyer</h1>
+  
+  <% if @image.present? %>
+    <div>
+      <%= image_tag @image.url, alt: 'Tractor Image', class: 'max-w-xs' %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :subject, 'Subject' %>
+    <%= f.text_field :subject, class: 'form-input' %>
+  </div>
+
+  <div>
+    <%= f.label :message, 'Message' %>
+    <%= f.text_area :message, class: 'form-textarea' %>
+  </div>
+
+  <%= f.hidden_field :link, value: tractor_path(@tractor.tractor_listing, @tractor) %>
+  <%= f.hidden_field :link_text, value: 'View Tractor' %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div>
+    <%= f.submit 'Send Message', class: 'btn-primary' %>
+  </div>
+<% end %>

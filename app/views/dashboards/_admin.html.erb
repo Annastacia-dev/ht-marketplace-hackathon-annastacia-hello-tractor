@@ -41,8 +41,8 @@
               <td class="p-3 border-b border-gray-200"><%= tractor.selling_status.humanize %></td>
               <td class="p-3 border-b border-gray-200 space-x-4">
                 <!-- Actions (e.g., Edit/Delete) -->
-                <%= link_to 'Approve', edit_tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: 'hover:underline  text-green-500' %>
-                <%= link_to 'Reject', edit_tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: 'hover:underline text-red-500' %>
+                <%= link_to 'Approve', approve_tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: 'hover:underline  text-green-500' %>
+                <%= link_to 'Reject', reject_tractor_listing_tractor_path(tractor.tractor_listing, tractor), class: 'hover:underline text-red-500' %>
               </td>
             </tr>
           <% end %>

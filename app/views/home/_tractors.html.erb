@@ -1,8 +1,14 @@
 <%= form_with url: tractors_path, method: :get, class: "" do %>
-  <div class="min-h-screen px-4 antialiased flex">
+   <div class="flex lg:flex-row flex-col items-center gap-4 mb-8">
+      <hr class="w-1/2 border border-black lg:flex hidden" />
+      <h1 class="text-4xl font-bold">Tractors for sale.</h1>
+    </div>
+
+  <div class="min-h-screen px-4 antialiased flex flex-col gap-4 mt-10 mb-6">
+
   <% unless @tractors.empty? %>
     <div class="">
-      <div class="grid grid-cols-1 md::grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <% @tractors.each do |tractor| %>
           <div class="bg-white p-1 rounded shadow-md hover:shadow-lg transition duration-300">
             <% if tractor.images.attached? %>
@@ -31,7 +37,7 @@
     </div>
   <% end %>
 
-    <div class="w-full lg:w-1/4 text-sm border-l ml-6 lg:fixed right-0">
+    <div class="w-full lg:w-1/3 text-sm border-l ml-6  right-0 px-4">
       <h3 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
        <i class="fa-solid fa-filter"></i>
        Filters
