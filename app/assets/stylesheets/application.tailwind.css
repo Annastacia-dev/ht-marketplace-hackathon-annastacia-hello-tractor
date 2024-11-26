@@ -48,7 +48,7 @@
   }
 
   .btn-outline {
-    @apply border border-secondaryCharcoal text-secondaryCharcoal hover:bg-secondaryCharcoal hover:text-white px-4 py-2 rounded-full transition duration-300 flex items-center cursor-pointe;
+    @apply border border-secondaryCharcoal text-secondaryCharcoal hover:bg-secondaryCharcoal hover:text-white px-4 py-2 rounded-full transition duration-300 flex items-center cursor-pointer;
   }
 
   .form-input {
