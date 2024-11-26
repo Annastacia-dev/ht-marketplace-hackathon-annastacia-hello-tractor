@@ -83,6 +83,6 @@ class TractorsController < ApplicationController
   end
 
   def tractor_params
-    params.require(:tractor).permit([:make, :model, :description, :condition, :year_of_manufacture, :hours_used, :location, :price, :publishing_status, :selling_status, images: []])
+    params.require(:tractor).permit([:make, :model, :description, :condition, :year_of_manufacture, :hours_used, :location, :price, :publishing_status, , images: [], :selling_status])
   end
 end
