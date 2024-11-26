@@ -1,0 +1,57 @@
+<footer class="bg-gray-800 text-white py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Column 1 -->
+      <div>
+
+        <%= link_to root_path, class: "flex items-center" do %>
+          <%= image_tag "logos/white.png", class: "w-40" %>
+        <% end %>
+        <p class="text-sm">
+          Your Trusted Marketplace for Tractors and Implements.
+        </p>
+      </div>
+      <!-- Column 2 -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:underline"><i class="fas fa-tractor mr-2"></i>Tractors</a></li>
+          <li><a href="#" class="hover:underline"><i class="fas fa-wrench mr-2"></i>Implements</a></li>
+          <li><a href="#" class="hover:underline"><i class="fas fa-tags mr-2"></i>Spare Parts</a></li>
+          <li><a href="#" class="hover:underline"><i class="fas fa-user mr-2"></i>Operators & Technicians</a></li>
+        </ul>
+      </div>
+      <!-- Column 3 -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">Services</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:underline"><i class="fas fa-briefcase mr-2"></i>Terms & Conditions</a></li>
+          <li><a href="#" class="hover:underline"><i class="fas fa-gavel mr-2"></i>Legal</a></li>
+          <li><a href="#" class="hover:underline"><i class="fas fa-lock mr-2"></i>Privacy Policy</a></li>
+          <li><a href="#" class="hover:underline"><i class="fas fa-chalkboard-teacher mr-2"></i>Payments & Return Policy</a></li>
+        </ul>
+      </div>
+      <!-- Column 4 -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">Contact</h4>
+        <p class="text-sm">
+          <i class="fas fa-envelope mr-2"></i>
+          Email: <a href="mailto:info@example.com" class="hover:underline">hello@tractor.com</a>
+        </p>
+        <p class="text-sm mt-2">
+          <i class="fas fa-phone-alt mr-2"></i>
+          Phone: <a href="tel:+1234567890" class="hover:underline">+254 76 724 39</a>
+        </p>
+        <div class="mt-4 flex space-x-4">
+          <a href="#" class="hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-gray-400"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-gray-400"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-sm border-t border-gray-700 pt-4 flex justify-center gap-4">
+      &copy; <%= Time.now.year %> | <b class="text-primarySunset">Hello Tractor</b> | All rights reserved.
+    </div>
+  </div>
+</footer>

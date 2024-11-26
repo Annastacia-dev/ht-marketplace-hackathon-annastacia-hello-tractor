@@ -14,7 +14,7 @@
 
         <ul class="md:flex hidden space-x-4 font-bold">
           <li class="hover:underline hover:text-primarySunset"over:underline hover:text-primarySunset">
-            <%= link_to 'Tractors', root_path, class: 'hover:underline' %>
+            <%= link_to 'Tractors', tractors_path, class: 'hover:underline' %>
           </li class="hover:underline hover:text-primarySunset"over:underline hover:text-primarySunset">
 
           <li class="hover:underline hover:text-primarySunset">
@@ -26,10 +26,11 @@
           </li>
 
           <li class="hover:underline hover:text-primarySunset">
-          <%= link_to 'Operators & Technicians', '#', class: 'hover:underline' %>
+          <%= link_to 'Operators & Technicians', dealers_path, class: 'hover:underline' %>
           </li>
         </ul>
       </nav>
+      
       <%= link_to root_path, class: "flex items-center" do %>
         <%= image_tag "logos/orange.png", class: "absolute top-1/2  transform -translate-x-1/2 -translate-y-1/2 w-28" %>
       <% end %>
