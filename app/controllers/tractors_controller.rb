@@ -82,7 +82,7 @@ class TractorsController < ApplicationController
     @tractor = @tractor_listing.tractors.find(params[:id])
   end
 
-  def tractor_params
-    params.require(:tractor).permit([:make, :model, :description, :condition, :year_of_manufacture, :hours_used, :location, :price, :publishing_status, images: [], :selling_status])
-  end
+ def tractor_params
+  params.require(:tractor).permit(:make, :model, :description, :condition, :year_of_manufacture, :hours_used, :location, :price, :publishing_status, images: [], :selling_status)
+ end
 end
