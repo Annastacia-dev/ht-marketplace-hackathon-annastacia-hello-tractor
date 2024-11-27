@@ -8,7 +8,6 @@
     2. Authorization and Authentication
        - Users can register on the website to either purchase or sell a tractor.
        - The sign up is easy, they just have to fill a few details and get a verification code to their phone numbers before they proceed.
-       - There is also an option to sign up with social media platforms like Facebook and Google.
     3. Selling Tractors
        - Sellers can list different specs of the tractor they are selling eg make, model, hours of usage, description, location and price.
        - Sellers can have draft listings that they can later submit for approval to be posted to the marketplace.
@@ -18,8 +17,7 @@
          - Buyers and sellers can message on the platform about a listing.
      6. PWA
          - Progressive web app capabilities. It's installable and supports push notifications.
-       
-    
+
 - **Challenges**
     1. Time constraint
        - Limited time to build the system. Focused on the Key features that can be iterated on in the future.
