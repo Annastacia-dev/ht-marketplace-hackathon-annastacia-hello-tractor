@@ -19,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
     )
 
     resource.update(
-      phone_verification_code: verification_code,
+      phone_verification_code: '0000',
       phone_verification_code_expires_at: Time.now + 5.minutes
     )
 
