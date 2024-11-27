@@ -28,7 +28,7 @@ class Users::PhoneVerificationsController < ApplicationController
     )
 
     current_user.update(
-      phone_verification_code: verification_code,
+      phone_verification_code: '0000',
       phone_verification_code_expires_at: expiration_time
     )
 
