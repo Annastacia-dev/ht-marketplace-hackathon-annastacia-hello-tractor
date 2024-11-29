@@ -3,13 +3,8 @@ require 'AfricasTalking'
 module Modules
   class Africastalking
     def initialize
-      if Rails.env.production?
-        username = ENV.fetch('AT_PROD_USERNAME')
-        api_key = ENV.fetch('AT_PROD_API_KEY')
-      else
-        username = ENV.fetch('AT_PROD_USERNAME')
-        api_key = ENV.fetch('AT_PROD_API_KEY')
-      end
+      username = ENV.fetch('AT_USERNAME')
+      api_key = ENV.fetch('AT_API_KEY')
 
       at = AfricasTalking::Initialize.new(username, api_key)
       @sms = at.sms

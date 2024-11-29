@@ -17,13 +17,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-
     message = Message.create(message_params)
 
     respond_to do |format|
       if message.save
           format.html { redirect_to message_path(message) }
       else
+        byebug
         format.html { render :new, status: :unprocessable_entity }
       end
     end

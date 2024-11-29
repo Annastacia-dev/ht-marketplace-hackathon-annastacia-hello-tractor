@@ -27,7 +27,8 @@
 class Message < ApplicationRecord
   belongs_to :sender, class_name: "User"
   belongs_to :receiver, class_name: "User"
-  belongs_to :item, polymorphic: true
 
   validates :content, presence: true
+  validates :item_id, presence: true
+  validates :item_type, presence: true
 end

@@ -1,26 +1,27 @@
-<%= form_with  url: messages_path, method: :post, local: true do |f| %>
-  <h1>Chat with Buyer</h1>
-  
-  <% if params[:item_type] == 'tractor' %>
-    <% @tractor = Tractor.find_by(id: params[:item_id]) %>
-    <%= f.hidden_field :item_id, value: @tractor.id %>
-    <%= f.hidden_field :item_type, value: 'Tractor' %>
-    <% if @tractor && @tractor.images.any? %>
-      <%= image_tag(@tractor.images[0], class: "w-16 h-16 object-cover rounded-md", alt: "Tractor Image") %>
+<div class="flex flex-col min-h-[50vh]  relative">
+  <!-- Chat Header -->
+  <div class="bg-primaryHibiscus text-white p-4 flex items-center">
+    <h1 class="text-lg font-bold">Chat with Seller</h1>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="border-t p-4 absolute w-full bottom-0">
+    <%= form_with url: messages_path, method: :post, local: true, class: "flex items-center space-x-3" do |f| %>
+      <!-- Hidden Fields -->
+      <% if params[:item_type] == 'tractor' %>
+        <% @tractor = Tractor.find_by(id: params[:item_id]) %>
+        <%= f.hidden_field :item_id, value: @tractor.id %>
+        <%= f.hidden_field :item_type, value: 'Tractor' %>
+      <% end %>
+      <%= f.hidden_field :sender_id, value: params[:sender] %>
+      <%= f.hidden_field :receiver_id, value: params[:receiver] %>
+      <%= f.hidden_field :send_at, value: Time.now %>
+
+      <!-- Message Input -->
+      <%= f.text_area :content, placeholder: "Type a message", class: "form-textarea flex-1 rounded-full border border-gray-300 p-2 focus:ring-2 focus:ring-green-500 focus:outline-none", rows: 1 %>
+      
+      <!-- Send Button -->
+      <%= f.submit 'Send', class: "bg-secondaryCharcoal text-white px-4 py-2 rounded-full hover:bg-secondaryPlum cursor-pointer transition" %>
     <% end %>
-  <% end %>
-
-  <div class="chat-interface mt-5">
-    <%= f.label :content, 'Your Message', class: 'sr-only' %>
-    <%= f.text_area :content, placeholder: 'Type your message...', class: 'form-textarea w-full p-2 border rounded-lg', rows: 3 %>
   </div>
-
-
-  <%= f.hidden_field :sender_id, value: params[:sender] %>
-  <%= f.hidden_field :send_at, value: Time.now %>
-  <%= f.hidden_field :receiver_id, value: params[:receiver] %>
-
-  <div class="mt-4 text-right">
-    <%= f.submit 'Send', class: 'btn-primary px-4 py-2 rounded-lg' %>
-  </div>
-<% end %>
+</div>

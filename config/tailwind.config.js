@@ -14,7 +14,7 @@ export default {
         merriweather: ['"Merriweather", serif'],
       },
       colors: {
-        primarySunset: '#ff461e', // sundet
+        primarySunset: '#ff461e', // sunset
         primaryHibiscus: '#f8285f',
         secondarySummer: '#93c2c6',
         secondarySage: '#93c393',
