@@ -1,0 +1,55 @@
+<div class="flex flex-col h-screen">
+
+  <div class="bg-primaryHibiscus text-white p-4 flex items-center">
+    <h1 class="text-lg font-bold">Chat</h1>
+  </div>
+
+
+  <div class="flex-1 overflow-y-auto p-4" id="message_responses">
+
+    <% if @message.sender_id == current_user.id %>
+      <div class="flex justify-end mb-4">
+        <div class="bg-secondarySummer text-bllack p-4 rounded-lg min-w-md">
+          <p class="text-sm mt-1"><%= @message.content %></p>
+          <p class="text-xs text-gray-500 text-left mt-1"><%= @message.created_at.strftime("%H:%M") %></p>
+        </div>
+      </div>
+    <% else %>
+      <div class="flex justify-start mb-4">
+        <div class="bg-gray-200 text-black p-4 rounded-lg max-w-xs">
+          <p class="text-sm mt-1"><%= @message.content %></p>
+          <p class="text-xs text-gray-500 text-left mt-1"><%= @message.created_at.strftime("%H:%M") %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Subsequent Responses -->
+    <% @message&.message_responses.each do |response| %>
+      <% if response.user_id == current_user.id %>
+        <div class="flex justify-end mb-2">
+          <div class="bg-secondarySummer text-black p-3 rounded-lg max-w-xs">
+            <p class="text-sm"><%= response.content %></p>
+            <p class="text-xs text-gray-500 text-left mt-1"><%= response.created_at.strftime("%H:%M") %></p>
+          </div>
+        </div>
+      <% else %>
+        <div class="flex justify-start mb-2">
+          <div class="bg-gray-200 text-black p-3 rounded-lg max-w-xs">
+            <p class="text-sm"><%= response.content %></p>
+            <p class="text-xs text-gray-500 text-left mt-1"><%= response.created_at.strftime("%H:%M") %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="bg-white border-t p-4">
+    <%= form_with url: message_message_responses_path(@message), method: :post, local: true, class: "flex items-center space-x-3" do |f| %>
+      <%= f.hidden_field :message_id, value: @message.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_area :content, placeholder: "Type a message", class: "form-textarea flex-1 rounded-full border border-gray-300 p-2 focus:ring-2 focus:ring-green-500 focus:outline-none", rows: 1 %>
+      <%= f.submit 'Send', class: "bg-secondaryCharcoal text-white px-4 py-2 rounded-full hover:bg-secondaryPlum transition" %>
+    <% end %>
+  </div>
+</div>

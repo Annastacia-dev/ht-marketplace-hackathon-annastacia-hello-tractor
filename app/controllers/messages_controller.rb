@@ -1,5 +1,14 @@
 class MessagesController < ApplicationController
 
+  before_action :find_message, only: [:show]
+
+  def index
+    @messages = Message
+                  .where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+                  .includes(:message_responses)
+                  .order(updated_at: :desc)
+  end
+
   def new
     message = Message.where(sender_id: params[:sender], receiver_id: params[:receiver])
 
@@ -34,5 +43,9 @@ class MessagesController < ApplicationController
 
   def message_params
     params.permit(:content, :receiver_id, :sender_id, :item_id, :item_type)
+  end
+
+  def find_message
+    @message = Message.find(params[:id])
   end
 end

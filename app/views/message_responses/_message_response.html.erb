@@ -1,0 +1,17 @@
+<% if message_response.user_id == current_user.id %>
+  <div class="flex justify-end mb-2">
+    <div class="bg-secondarySummer text-black p-3 rounded-lg max-w-xs">
+      <p class="text-sm"><%= message_response.content %></p>
+      <p class="text-xs text-gray-200 text-right mt-1">
+        <%= message_response.created_at.strftime("%H:%M") %>
+      </p>
+    </div>
+  </div>
+<% else %>
+  <!-- Bubble for Other Users -->
+  <div class="flex justify-start mb-2">
+    <div class="bg-gray-200 text-black p-3 rounded-lg max-w-xs">
+      <p class="text-sm"><%= message_response.content %></p>
+    </div>
+  </div>
+<% end %>

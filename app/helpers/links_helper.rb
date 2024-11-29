@@ -17,6 +17,12 @@ module LinksHelper
     end
 
     items.push(
+      path: messages_path,
+      icon_class: 'fa-solid fa-message',
+      menu_text: 'Messages',
+    )
+
+    items.push(
       path: '',
       icon_class: 'fa-solid fa-user',
       menu_text: 'Profile',
